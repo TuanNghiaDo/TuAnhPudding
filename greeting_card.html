@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Vietnamese Women's Day 20/10</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffd1dc);
+        font-family: "Dancing Script", cursive;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        /* provide perspective for 3D flip */
+        perspective: 1200px;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .card {
+        width: min(400px, calc((100vh - 80px) * 2 / 3), calc(100vw - 40px));
+        /* modern mobile browsers: use small viewport height to avoid URL bar issues */
+        width: min(400px, calc((100svh - 80px) * 2 / 3), calc(100vw - 40px));
+        aspect-ratio: 2 / 3;
+        height: auto;
+        position: relative;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        transition: transform 1.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+        cursor: pointer;
+        margin: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        border-radius: 30px;
+        /* create a stacking context for children */
+        transform-origin: center center;
+        will-change: transform;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+
+      /* flip the card only when the .flipped class is present (no hover) */
+      .card.flipped {
+        transform: rotateY(180deg);
+      }
+
+      /* Pause expensive inner animations while flipping to reduce jank */
+      .card.flipped .background-pattern,
+      .card.flipped .background-flowers,
+      .card.flipped .heart {
+        animation-play-state: paused !important;
+        /* keep paused for the duration of the flip */
+        transition: none;
+      }
+
+      .card-front,
+      .card-back {
+        position: absolute;
+        inset: 0; /* top:0; right:0; bottom:0; left:0; */
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        will-change: transform;
+        isolation: isolate;
+      }
+
+      .card-back::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+
+        /* --- PHẦN TÙY CHỈNH ẢNH NỀN --- */
+        background-image: url("https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-1/558872507_4288605971361409_6131727183055398572_n.jpg?stp=cp6_dst-jpg_s480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFNHnBSVpcrY8Prt7v3v3vniF9baDa6BcGIX1toNroFwRYH9eL9cLoDlQhy0VCXipzIj4MDGMsbKI78Rw03nTnf&_nc_ohc=bbs00dothGoQ7kNvwH-mB46&_nc_oc=AdlOCzx30fIoefFEITEapTHx_tNBTBUXwW37HtIpewhlGb7gdGUHyKmdY4uM-UxNvYk49IMczfJXLQuLTjWC_1e0&_nc_zt=24&_nc_ht=scontent.fhan14-2.fna&_nc_gid=juL-2pqkKRFkEcjsnBcD4w&oh=00_AfcJy7Yr7s6cHIVSySj0cOK4AiLH6Af0PXkriRZMYjP10g&oe=68FBCE23");
+        background-size: cover; /* Giúp ảnh lấp đầy phần tử */
+        background-position: center; /* Căn giữa ảnh */
+
+        /* --- ĐIỀU CHỈNH ĐỘ MỜ --- */
+        opacity: 0.5; /* Thay đổi giá trị từ 0 đến 1, ví dụ 0.5 là mờ 50% */
+
+        border-radius: 20px;
+        z-index: -1; /* Đưa lớp nền ra phía sau */
+      }
+
+      .card-front {
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom right, #fff5f5, #ffe9ec);
+        overflow: hidden;
+        position: relative;
+        border-radius: 30px;
+        z-index: 2;
+      }
+
+      .background-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        pointer-events: none;
+        /* use a transform-animated pseudo-element for better performance */
+      }
+
+      .background-pattern::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+            circle at 20% 20%,
+            #ff9a9e 2px,
+            transparent 2px
+          ),
+          radial-gradient(circle at 80% 40%, #ff9a9e 2px, transparent 2px),
+          radial-gradient(circle at 40% 60%, #ff9a9e 2px, transparent 2px),
+          radial-gradient(circle at 70% 80%, #ff9a9e 2px, transparent 2px);
+        background-size: 200px 200px;
+        transform-origin: 0 0;
+        will-change: transform;
+        animation: patternMoveTransform 18s linear infinite;
+      }
+
+      @keyframes patternMoveTransform {
+        from {
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          transform: translate3d(200px, 200px, 0);
+        }
+      }
+
+      .background-flowers {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.1;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff6b8b" d="M50,20 C55,15 65,15 70,20 C75,25 75,35 70,40 C65,45 55,45 50,40 C45,35 45,25 50,20 Z M30,50 C35,45 45,45 50,50 C55,55 55,65 50,70 C45,75 35,75 30,70 C25,65 25,55 30,50 Z M70,50 C75,45 85,45 90,50 C95,55 95,65 90,70 C85,75 75,75 70,70 C65,65 65,55 70,50 Z"/></svg>')
+          0 0/100px 100px repeat;
+      }
+
+      .flower-decoration {
+        position: absolute;
+        width: 40px;
+        height: 60px;
+        background: linear-gradient(45deg, #ff8fa3, #ffb3c1);
+        border-radius: 50%;
+        animation: float 8s ease-in-out infinite;
+        z-index: 1;
+        filter: drop-shadow(0 0 5px rgba(255, 143, 163, 0.3));
+      }
+
+      .flower-decoration::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        border-radius: inherit;
+        transform: rotate(45deg);
+        filter: brightness(1.1);
+      }
+
+      .flower-decoration::after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: #ffeb3b;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .flower1 {
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .flower2 {
+        top: 20%;
+        right: 15%;
+        animation-delay: 0.5s;
+      }
+      .flower3 {
+        bottom: 15%;
+        left: 20%;
+        animation-delay: 1s;
+      }
+      .flower4 {
+        bottom: 10%;
+        right: 10%;
+        animation-delay: 1.5s;
+      }
+
+      .leaf {
+        position: absolute;
+        width: 30px;
+        height: 15px;
+        background: #98ff98;
+        border-radius: 100px 0;
+        transform-origin: 100% 50%;
+        animation: wave 4s infinite;
+      }
+
+      .leaf1 {
+        top: 30%;
+        left: 5%;
+        transform: rotate(45deg);
+        animation-delay: 0s;
+      }
+      .leaf2 {
+        top: 60%;
+        right: 5%;
+        transform: rotate(-135deg);
+        animation-delay: 0.5s;
+      }
+      .leaf3 {
+        bottom: 20%;
+        left: 5%;
+        transform: rotate(-45deg);
+        animation-delay: 1s;
+      }
+
+      @keyframes wave {
+        0%,
+        100% {
+          transform: rotate(var(--rotate)) scale(1);
+        }
+        50% {
+          transform: rotate(calc(var(--rotate) + 10deg)) scale(1.1);
+        }
+      }
+
+      .sparkle {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: #fff;
+        border-radius: 50%;
+        animation: twinkle 2s ease-in-out infinite;
+      }
+
+      .card-back {
+        transform: rotateY(180deg);
+        padding: clamp(20px, 6vw, 40px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        /* Đã xóa background và animation không cần thiết */
+        border-radius: 30px;
+        z-index: 1;
+        overflow: auto;
+      }
+
+      /* responsive typography for back side */
+      .card-back h2 {
+        font-size: clamp(1.4em, 4.5vw, 2em) !important;
+      }
+
+      .card-back p {
+        font-size: clamp(1em, 3.8vw, 1.4em) !important;
+      }
+
+      .card-back .signature {
+        font-size: clamp(1em, 3.5vw, 1.3em) !important;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .card-back::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-1/558872507_4288605971361409_6131727183055398572_n.jpg?stp=cp6_dst-jpg_s480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFNHnBSVpcrY8Prt7v3v3vniF9baDa6BcGIX1toNroFwRYH9eL9cLoDlQhy0VCXipzIj4MDGMsbKI78Rw03nTnf&_nc_ohc=bbs00dothGoQ7kNvwH-mB46&_nc_oc=AdlOCzx30fIoefFEITEapTHx_tNBTBUXwW37HtIpewhlGb7gdGUHyKmdY4uM-UxNvYk49IMczfJXLQuLTjWC_1e0&_nc_zt=24&_nc_ht=scontent.fhan14-2.fna&_nc_gid=juL-2pqkKRFkEcjsnBcD4w&oh=00_AfcJy7Yr7s6cHIVSySj0cOK4AiLH6Af0PXkriRZMYjP10g&oe=68FBCE23");
+        background-size: cover; /* Giúp ảnh lấp đầy phần tử */
+        background-position: center; /* Căn giữa ảnh */
+
+        /* --- ĐIỀU CHỈNH ĐỘ MỜ --- */
+        opacity: 0.6; /* Thay đổi giá trị từ 0 (mờ) đến 1 (rõ) */
+
+        /* Sửa lại border-radius để khớp với thẻ cha */
+        border-radius: 30px;
+        z-index: -1; /* Đưa lớp nền ra phía sau */
+      }
+
+      /* ensure internal elements don't add unexpected margins */
+      .card-front *,
+      .card-back * {
+        box-sizing: border-box;
+      }
+      .card-front h1,
+      .card-front h2,
+      .card-back h1,
+      .card-back h2,
+      .card-front p,
+      .card-back p {
+        margin: 0;
+      }
+
+      .heart {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        animation: pulse 1.5s infinite;
+        margin: 20px 0;
+        z-index: 1;
+        filter: drop-shadow(0 0 10px rgba(255, 75, 106, 0.5));
+      }
+
+      .heart::before,
+      .heart::after {
+        content: "";
+        position: absolute;
+        width: 75px;
+        height: 120px;
+        background: linear-gradient(45deg, #ff4b6a, #ff85a2);
+        border-radius: 75px 75px 0 0;
+      }
+
+      .heart::before {
+        left: 50px;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
+
+      .heart::after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.06);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .message {
+        margin-top: 20px;
+        color: #ff4b6a;
+        font-size: 1.8em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        font-family: "Dancing Script", cursive;
+        animation: colorChange 3s infinite;
+      }
+
+      @keyframes colorChange {
+        0% {
+          color: #ff4b6a;
+        }
+        50% {
+          color: #ff85a2;
+        }
+        100% {
+          color: #ff4b6a;
+        }
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .sparkle1 {
+        top: 20%;
+        left: 20%;
+        animation-delay: 0s;
+      }
+      .sparkle2 {
+        top: 30%;
+        right: 30%;
+        animation-delay: 0.3s;
+      }
+      .sparkle3 {
+        bottom: 40%;
+        left: 40%;
+        animation-delay: 0.6s;
+      }
+      .sparkle4 {
+        bottom: 30%;
+        right: 20%;
+        animation-delay: 0.9s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(20deg);
+        }
+      }
+
+      /* Firework and petal particle styles */
+      .particle-container {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: visible;
+        z-index: 5;
+      }
+
+      .firework {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .spark {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        transform-origin: 0 0;
+        opacity: 0.95;
+        will-change: transform, opacity;
+        animation: fw-burst 900ms ease-out forwards;
+      }
+
+      @keyframes fw-burst {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+          opacity: 1;
+        }
+        60% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate3d(var(--tx), var(--ty), 0) scale(0.6);
+          opacity: 0;
+        }
+      }
+
+      .petal {
+        position: absolute;
+        width: 14px;
+        height: 10px;
+        background: linear-gradient(45deg, #ffd1dc, #ff9aa2);
+        border-radius: 6px 6px 6px 6px;
+        transform-origin: center;
+        opacity: 0.95;
+        will-change: transform, opacity;
+        animation: petal-fall 2500ms linear forwards;
+      }
+
+      @keyframes petal-fall {
+        0% {
+          transform: translate3d(var(--sx), var(--sy), 0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translate3d(var(--dx), var(--dy), 0) rotate(540deg);
+          opacity: 0;
+        }
+      }
+
+      /* page background particles */
+      .bg-particle-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+        opacity: 0.18;
+      }
+
+      .bg-flower {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        background: radial-gradient(
+          circle at 50% 40%,
+          #ff9aa2 50%,
+          transparent 51%
+        );
+        border-radius: 50%;
+        filter: blur(1px);
+        transform: translate3d(0, 0, 0);
+        animation: bg-float 10s linear infinite;
+      }
+
+      @keyframes bg-float {
+        0% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-40px) translateX(20px) rotate(5deg);
+        }
+        100% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-front">
+        <div class="background-pattern"></div>
+        <div class="background-flowers"></div>
+        <div class="flower-decoration flower1"></div>
+        <div class="flower-decoration flower2"></div>
+        <div class="flower-decoration flower3"></div>
+        <div class="flower-decoration flower4"></div>
+        <div class="leaf leaf1" style="--rotate: 45deg"></div>
+        <div class="leaf leaf2" style="--rotate: -135deg"></div>
+        <div class="leaf leaf3" style="--rotate: -45deg"></div>
+        <div class="sparkle sparkle1"></div>
+        <div class="sparkle sparkle2"></div>
+        <div class="sparkle sparkle3"></div>
+        <div class="sparkle sparkle4"></div>
+        <div class="heart"></div>
+        <div class="message" style="font-size: 3em; margin-bottom: 10px">
+          20/10
+        </div>
+        <div
+          class="message"
+          style="
+            font-size: 1.8em;
+            background: linear-gradient(45deg, #ff4b6a, #ff85a2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          ✨ Chạm vào để mở thiệp ❤️ ✨
+        </div>
+      </div>
+      <div class="card-back">
+        <h2
+          style="
+            color: #ff4b6a;
+            font-size: 2em;
+            font-family: 'Lobster', cursive;
+            margin-bottom: 20px;
+          "
+        >
+          Happy Women's Day!
+        </h2>
+        <p
+          style="
+            color: #ff6b8b;
+            line-height: 2;
+            font-size: 1.4em;
+            text-align: center;
+          "
+        >
+          ✿ Chúc chị Tú Anh một ngày 20/10 thật hạnh phúc ✿<br />
+          ❀ Luôn xinh đẹp, rạng ngời và thành công ❀<br />
+          ✿ Mọi ước mơ đều thành hiện thực ✿<br />
+          ❀ Và luôn nhận được nhiều yêu thương ❤️ ❀<br />
+          ❀ Có thật nhiều tiền 1 tỷ phần trăm yêu đời ❤️ ❀<br />
+        </p>
+        <div
+          class="signature"
+          style="
+            margin-top: 30px;
+            font-style: italic;
+            color: #ff4b6a;
+            font-size: 1.3em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+          "
+        >
+          ♥ Thân gửi : Em Nghĩa đẹp trai ♥
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // enable keyboard accessibility: Enter/Space triggers the card click handler
+      (function () {
+        const card = document.querySelector(".card");
+        if (!card) return;
+        card.setAttribute("tabindex", "0");
+        // keyboard triggers the same click behavior (click handler defined later)
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            // trigger the click handler that performs flip + effects
+            card.click();
+          }
+        });
+      })();
+
+      // create fireworks and petals when card flips
+      (function () {
+        const card = document.querySelector(".card");
+        if (!card) return;
+
+        // particle container
+        const container = document.createElement("div");
+        container.className = "particle-container";
+        card.appendChild(container);
+
+        function createFireworks(
+          xPercent = 50,
+          yPercent = 40,
+          colorList = ["#fff176", "#ff8a80", "#ffd54f", "#ff80ab"]
+        ) {
+          const count = 18;
+          for (let i = 0; i < count; i++) {
+            const spark = document.createElement("div");
+            spark.className = "spark";
+            const angle =
+              Math.PI * 2 * (i / count) + (Math.random() - 0.5) * 0.4;
+            const dist = 70 + Math.random() * 90;
+            const tx = Math.cos(angle) * dist + "px";
+            const ty = Math.sin(angle) * dist + "px";
+            spark.style.setProperty("--tx", tx);
+            spark.style.setProperty("--ty", ty);
+            spark.style.left = xPercent + "%";
+            spark.style.top = yPercent + "%";
+            spark.style.background = colorList[i % colorList.length];
+            container.appendChild(spark);
+            // cleanup
+            spark.addEventListener("animationend", () => spark.remove());
+          }
+        }
+
+        function createPetals(count = 12) {
+          const w = card.clientWidth;
+          const h = card.clientHeight;
+          for (let i = 0; i < count; i++) {
+            const petal = document.createElement("div");
+            petal.className = "petal";
+            const sx = 20 + Math.random() * 60 + "px";
+            const sy = -10 - Math.random() * 40 + "px";
+            const dx = Math.random() * (w + 80) - 40 + "px";
+            const dy = h + 60 + Math.random() * 120 + "px";
+            petal.style.setProperty("--sx", sx);
+            petal.style.setProperty("--sy", sy);
+            petal.style.setProperty("--dx", dx);
+            petal.style.setProperty("--dy", dy);
+            petal.style.left = Math.random() * 80 + 10 + "%";
+            petal.style.top = Math.random() * 10 + 0 + "%";
+            petal.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+            container.appendChild(petal);
+            petal.addEventListener("animationend", () => petal.remove());
+          }
+        }
+
+        // keep track of continuous open intervals
+        let openFwInterval = null;
+        let openBgInterval = null;
+        let isOpen = false;
+
+        // on click: toggle open/close with effects
+        card.addEventListener("click", () => {
+          if (!isOpen) {
+            card.classList.add("flipped");
+            // strong opening effect: multiple bursts and petals
+            createFireworks(50, 35);
+            setTimeout(() => createFireworks(45, 40), 180);
+            setTimeout(() => createFireworks(55, 40), 360);
+            createPetals(18);
+            // background blooms/fireworks
+            if (window.spawnBgBloom) window.spawnBgBloom();
+            setTimeout(() => {
+              if (window.triggerBgFireworks) window.triggerBgFireworks();
+            }, 200);
+            setTimeout(() => {
+              if (window.spawnBgBloom) window.spawnBgBloom();
+            }, 420);
+
+            // start continuous internal fireworks (avoid duplicates)
+            if (!openFwInterval) {
+              openFwInterval = setInterval(() => {
+                // randomize position a bit across the card
+                const x = 45 + (Math.random() * 10 - 5);
+                const y = 30 + Math.random() * 30;
+                createFireworks(x, y);
+                if (Math.random() > 0.7) createPetals(3);
+              }, 1200);
+            }
+
+            // start occasional background fireworks/blooms
+            if (!openBgInterval) {
+              openBgInterval = setInterval(() => {
+                if (Math.random() > 0.4) {
+                  if (window.triggerBgFireworks) window.triggerBgFireworks();
+                }
+                if (Math.random() > 0.5) {
+                  if (window.spawnBgBloom) window.spawnBgBloom();
+                }
+              }, 1800 + Math.random() * 1200);
+            }
+            // expose for debug/cleanup
+            window._openFwInterval = openFwInterval;
+            window._openBgInterval = openBgInterval;
+            isOpen = true;
+          } else {
+            // close: flip back, stop intervals and clear particles
+            card.classList.remove("flipped");
+            if (openFwInterval) {
+              clearInterval(openFwInterval);
+              openFwInterval = null;
+            }
+            if (openBgInterval) {
+              clearInterval(openBgInterval);
+              openBgInterval = null;
+            }
+            container
+              .querySelectorAll(".spark, .petal")
+              .forEach((n) => n.remove());
+            isOpen = false;
+          }
+        });
+
+        // cleanup on unload
+        window.addEventListener("unload", () => {
+          if (openFwInterval) clearInterval(openFwInterval);
+          if (openBgInterval) clearInterval(openBgInterval);
+        });
+      })();
+
+      // background particle layer (subtle flowers and occasional distant fireworks)
+      (function () {
+        const layer = document.createElement("div");
+        layer.className = "bg-particle-layer";
+        document.body.appendChild(layer);
+
+        function spawnBgFlower() {
+          const f = document.createElement("div");
+          f.className = "bg-flower";
+          f.style.left = Math.random() * 100 + "%";
+          f.style.top = Math.random() * 100 + "%";
+          f.style.animationDuration = 8 + Math.random() * 8 + "s";
+          layer.appendChild(f);
+          // remove after some time
+          setTimeout(() => f.remove(), 20000 + Math.random() * 20000);
+        }
+
+        // spawn a few flowers slowly
+        for (let i = 0; i < 12; i++) setTimeout(spawnBgFlower, i * 800);
+        setInterval(spawnBgFlower, 4500);
+
+        // occasional distant fireworks - keep running
+        const bgFwInterval = setInterval(() => {
+          if (Math.random() < 0.35) {
+            triggerBgFireworks();
+          }
+        }, 3500 + Math.random() * 2000);
+
+        // expose functions to trigger stronger background blooms/fireworks on demand
+        window.spawnBgBloom = function () {
+          // spawn a radial bloom of bg-flowers at center
+          for (let i = 0; i < 18; i++) {
+            const f = document.createElement("div");
+            f.className = "bg-flower";
+            const angle = Math.PI * 2 * (i / 18);
+            const r = 60 + Math.random() * 40;
+            const x = 50 + (Math.cos(angle) * r) / (window.innerWidth / 100);
+            const y = 45 + (Math.sin(angle) * r) / (window.innerHeight / 100);
+            f.style.left = x + "%";
+            f.style.top = y + "%";
+            f.style.animationDuration = 6 + Math.random() * 6 + "s";
+            f.style.opacity = "0.85";
+            layer.appendChild(f);
+            setTimeout(() => f.remove(), 14000 + Math.random() * 8000);
+          }
+        };
+
+        window.triggerBgFireworks = function () {
+          const fx = document.createElement("div");
+          fx.className = "particle-container";
+          fx.style.opacity = "0.18";
+          fx.style.zIndex = "0";
+          document.body.appendChild(fx);
+          for (let i = 0; i < 18; i++) {
+            const s = document.createElement("div");
+            s.className = "spark";
+            const angle = Math.PI * 2 * (i / 18) + (Math.random() - 0.5) * 0.6;
+            const dist = 60 + Math.random() * 80;
+            const tx = Math.cos(angle) * dist + "px";
+            const ty = Math.sin(angle) * dist + "px";
+            s.style.setProperty("--tx", tx);
+            s.style.setProperty("--ty", ty);
+            s.style.left = 10 + Math.random() * 80 + "%";
+            s.style.top = 10 + Math.random() * 60 + "%";
+            s.style.background = ["#ff8a80", "#ffd54f", "#ff80ab"][i % 3];
+            fx.appendChild(s);
+            s.addEventListener("animationend", () => s.remove());
+          }
+          setTimeout(() => fx.remove(), 1400);
+        };
+      })();
+    </script>
+  </body>
+</html>
